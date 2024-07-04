@@ -1,6 +1,9 @@
 ---
-import styles from '@styles/header.module.scss';
 import Typing from '../shared/Typing.astro';
+import styles from '@styles/header.module.scss';
+import { Button as SharedButton } from '../shared/Button';
+import { MdExitToApp } from "react-icons/md";
+
 ---
 
 <nav class={styles.header}>
@@ -9,12 +12,17 @@ import Typing from '../shared/Typing.astro';
       LINKLY
     </Typing>
   </a>
-  <div class={styles.blur}>
-    <a>
-      Login button
+  <div class={styles.navigationButtons}>
+    <a href="/auth/login">
+      <SharedButton variant="secondary" size="lg">
+        <p>Login</p>
+        <MdExitToApp  size={24} />
+      </SharedButton>
     </a>
-    <a>
-      Registration button
+    <a href="/auth/register">
+      <SharedButton size="lg">
+        Register Now
+      </SharedButton>
     </a>
   </div>
 </nav>

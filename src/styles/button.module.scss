@@ -1,0 +1,81 @@
+@import "global.module";
+
+.primary {
+  box-shadow: 0 1px 15px $brand-primary-blue;
+  background: $brand-primary-blue;
+  color: white;
+  border: 2px solid $brand-primary-blue;
+  &:hover {
+    background: #1141b7;
+  }
+
+  &:disabled {
+    background: #1141b7;
+  }
+}
+
+.secondary {
+  border: 1px solid $lite;
+  background: $grey;
+  color: white;
+
+  &:hover {
+    background: $black;
+  }
+
+  &:disabled {
+    background: $black;
+  }
+}
+
+.default {
+  margin: 4px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 18px;
+  transition: ease-in-out;
+  transition-duration: 200ms;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(.95);
+  }
+}
+
+.mdSize {
+  height: 40px;
+  padding: 20px 20px;
+}
+
+.largeSize {
+  font-size: 20px;
+  height: 54px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.smallSize {
+  font-size: 16px;
+  height: 34px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.loaderIcon {
+  margin-right: 6px;
+  height: 12px;
+  width: 12px;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
