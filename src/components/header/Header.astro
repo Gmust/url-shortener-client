@@ -1,0 +1,21 @@
+---
+import styles from '@styles/header.module.scss';
+import Typing from '../shared/Typing.astro';
+---
+
+<nav class={styles.header}>
+  <a href="/">
+    <Typing class={`${styles.blur} ${styles.logo}`} style={{ 'cursor': 'pointer' }} variant="gradient" size="lg">
+      LINKLY
+    </Typing>
+  </a>
+  <div class={styles.blur}>
+    <a>
+      Login button
+    </a>
+    <a>
+      Registration button
+    </a>
+  </div>
+</nav>
+

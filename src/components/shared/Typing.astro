@@ -1,0 +1,29 @@
+---
+import styles from '../../styles/typing.scss';
+import { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'div'> {
+  fontSize: number,
+  fontWeight: number
+  variant: 'gradient' | 'normal',
+  size: 'sm' | 'md' | 'lg' | 'xl'
+}
+
+const { fontWeight, fontSize, variant, size, ...props } = Astro.props;
+---
+
+<div
+  class:list={[
+    styles,
+    { gradient: variant === 'gradient' },
+    { normal: variant === 'normal' },
+    { sm: size === 'sm' },
+    { md: size === 'md' },
+    { lg: size === 'lg' },
+    { xl: size === 'xl' },
+    Astro.props.class,
+  ]}
+  {...props}
+>
+  <slot />
+</div>

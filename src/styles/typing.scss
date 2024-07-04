@@ -1,0 +1,32 @@
+@import "global.module";
+
+div {
+  padding: 2px;
+  font-weight: 1000;
+}
+
+.gradient {
+  background-image: linear-gradient(0.25turn, $topBarDarkPurple, rgba(187, 53, 196, 0.9), $topBarLightPurple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.normal {
+  color: white;
+}
+
+.sm {
+  font-size: 12px;
+}
+
+.md {
+  font-size: 24px;
+}
+
+.lg {
+  font-size: 48px;
+}
+
+.xl {
+  font-size: 96px;
+}
