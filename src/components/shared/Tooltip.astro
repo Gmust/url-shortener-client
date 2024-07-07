@@ -1,0 +1,35 @@
+---
+import styles from '../../styles/tooltip.module.scss';
+import clsx from 'clsx';
+
+interface Props {
+  tooltipText: string,
+  position: 'right' | 'top' | 'bottom' | 'left',
+  textSize?: 'sm' | 'md' | 'lg'
+}
+
+
+const { textSize, tooltipText, position } = Astro.props;
+---
+
+<div class={styles.tooltipContainer}>
+  <slot />
+  <div class={
+    clsx(
+      styles.tooltipText,
+      position == 'right' && styles.right,
+      position == 'top' && styles.top,
+      position == 'left' && styles.left,
+      position == 'bottom' && styles.bottom,
+    )}>
+    <p class={
+      clsx(
+        textSize == 'sm' && styles.textSm,
+        textSize == 'md' && styles.textMd,
+        textSize == 'lg' && styles.textLg,
+      )
+    }>
+      {tooltipText}
+    </p>
+  </div>
+</div>
