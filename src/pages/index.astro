@@ -1,18 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Typing from '../components/shared/Typing.astro';
 import Tooltip from '../components/shared/Tooltip.astro';
+import { UrlInput } from '../components/mainPage/UrlInput';
+import { FaRegQuestionCircle } from 'react-icons/fa';
+import styles from '../styles/mainPage/main-page.module.scss';
+import { blur } from '../styles/header.module.scss';
 ---
 
 <Layout>
-
+  <section class={styles.mainPageContainer}>
+    <div class={styles.urlInputContainer}>
+      <div class:list={[styles.textContainer, blur]}>
+        <Typing tag="h2" size="lg" variant="gradient">Shorten your Loooong Links :)</Typing>
+        <p>Linkly is an efficient and easy-to-use URL shortening service that streamlines your online experience.</p>
+      </div>
+      <UrlInput />
+      <span class={styles.linksInfo}>
+        You can create
+        <Typing tag="h4" size="md" variant="gradient">05</Typing>
+        more links. Register now to enjoy unlimited usage
+        <span style="margin-left: 5px">
+          <Tooltip position="top" tooltipText="Create new account to aceess unlimited usage" textSize="md" >
+            <FaRegQuestionCircle class={styles.icon} />
+          </Tooltip>
+        </span>
+      </span>
+    </div>
+    <div>
+    </div>
+  </section>
 </Layout>
 
 
-<style>
-section{
-    max-width: 1000px;
-    margin-left: 100px;
-    display: flex;
-    justify-content: space-between;
-}
-</style>

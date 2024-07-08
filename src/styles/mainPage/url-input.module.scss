@@ -1,0 +1,35 @@
+@import "../global.module";
+
+
+.urlInputWrapper {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+
+  input {
+    font-size: 24px;
+    font-weight: 200;
+    padding: 15px 170px 15px 55px;
+    border-radius: 20px;
+    border: 1px solid $lite;
+    background: $grey;
+    color: #d5dcdc;
+  }
+
+  .icon {
+    position: absolute;
+    left: 20px;
+    scale: 1.5;
+    color: #9a9d9d;
+    pointer-events: none;
+  }
+
+  button {
+    position: absolute;
+    right: 0;
+  }
+
+}
+
+

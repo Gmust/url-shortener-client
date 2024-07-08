@@ -1,0 +1,54 @@
+@import "../global.module";
+
+
+.mainPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+}
+
+
+.urlInputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .linksInfo {
+    margin-top: 10px;
+    color: $lite-text;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+
+    h4 {
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+
+    .icon {
+      margin-left: 10px;
+    }
+
+  }
+
+}
+
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 14px;
+
+  p {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: $lite-text;
+  }
+
+}

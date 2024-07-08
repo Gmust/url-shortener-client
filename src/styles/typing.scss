@@ -1,8 +1,18 @@
 @import "global.module";
 
-div {
+ h1 {
   padding: 2px;
   font-weight: 1000;
+}
+
+h2 {
+  padding: 2px;
+  font-weight: 800;
+}
+
+h3{
+  padding: 2px;
+  font-weight: 600;
 }
 
 .gradient {

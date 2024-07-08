@@ -6,13 +6,14 @@ interface Props extends HTMLAttributes<'div'> {
   fontSize: number,
   fontWeight: number
   variant: 'gradient' | 'normal',
-  size: 'sm' | 'md' | 'lg' | 'xl'
+  size: 'sm' | 'md' | 'lg' | 'xl',
+  tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div'
 }
 
-const { fontWeight, fontSize, variant, size, ...props } = Astro.props;
+const { fontWeight, fontSize, variant, size, tag: Tag = 'div', ...props } = Astro.props;
 ---
 
-<div
+<Tag
   class:list={[
     styles,
     { gradient: variant === 'gradient' },
@@ -26,4 +27,4 @@ const { fontWeight, fontSize, variant, size, ...props } = Astro.props;
   {...props}
 >
   <slot />
-</div>
+</Tag>
