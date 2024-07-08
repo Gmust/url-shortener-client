@@ -1,0 +1,124 @@
+@import "global.module";
+
+.toast {
+  background-color: $black;
+  padding: 1.5em;
+  border-radius: 0.5em;
+  position: relative;
+  color: $lite-text;
+  opacity: 0.99;
+
+  &:hover {
+    opacity: 1;
+  }
+
+
+  .message {
+    display: flex;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 0;
+    line-height: 1;
+    height: 16px;
+    width: 16px;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+  }
+
+}
+//
+//
+//.toastList {
+//  position: fixed;
+//  width: 100%;
+//  padding: 16px;
+//  min-height: 100vh;
+//  max-width: 400px;
+//
+//  .topLeft {
+//    top: 0;
+//    left: 0;
+//
+//    .toast {
+//      animation: toast-in-right 2.5s;
+//    }
+//
+//  }
+//
+//  .topRight {
+//    top: 0;
+//    right: 0;
+//  }
+//
+//  .bottomLeft {
+//    bottom: 0;
+//    left: 0;
+//  }
+//
+//  .bottomRight {
+//    bottom: 0;
+//    right: 0;
+//
+//    .toast {
+//      animation: toast-in-right 2.5s;
+//    }
+//  }
+//
+//}
+
+
+.toastList {
+  position: fixed;
+  padding: 16px;
+  min-height: 100vh;
+  max-width: 400px;
+}
+
+.topLeft {
+  top: 0;
+  left: 0;
+}
+
+.topRight {
+  top: 0;
+  right: 0;
+}
+
+.bottomLeft {
+  bottom: 0;
+  left: 0;
+}
+
+.bottomRight {
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes toast-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+.toastList .toast {
+  transition: transform 2.5s, opacity 2.5s,
+  box-shadow 2.5s ease-in-out;
+}
