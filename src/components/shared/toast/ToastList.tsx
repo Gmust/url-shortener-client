@@ -1,9 +1,9 @@
+import { useEffect, useRef } from 'react';
 import { Toast } from '@components/shared/toast/Toast';
 import styles from '@styles/toast.module.scss';
 // @ts-ignore
 import clsx from 'clsx';
 import { IToast, ToastPositions } from '../../../@types/toast';
-import { useEffect, useRef } from 'react';
 
 interface IToastListProps {
   position: ToastPositions,
@@ -46,7 +46,8 @@ export const ToastList = ({ removeToast, position, data }: IToastListProps) => {
            aria-live="assertive"
       >
         {data.map((toast) =>
-          <Toast id={toast.id} key={toast.id} type={toast.type} message={toast.message} onClose={removeToast} />,
+          <Toast removing={toast.removing} id={toast.id} key={toast.id} type={toast.type} message={toast.message}
+                 onClose={removeToast} headingText={toast.headingText} Icon={toast.Icon} />,
         )}
       </div>
     )

@@ -5,6 +5,8 @@ export interface IToast {
   message: string,
   type: ToastTypes,
   Icon?: IconType
+  removing?: boolean
+  headingText?: string;
 }
 
 

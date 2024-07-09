@@ -1,12 +1,17 @@
 @import "global.module";
 
 .toast {
+  display: flex;
+  flex-direction: column;
   background-color: $black;
-  padding: 1.5em;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   border-radius: 0.5em;
   position: relative;
-  color: $lite-text;
+  color: white;
   opacity: 0.99;
+  transition: transform 0.5s, opacity 0.5s;
 
   &:hover {
     opacity: 1;
@@ -15,61 +20,55 @@
 
   .message {
     display: flex;
+    align-items: center;
+    color: white;
+    padding: 4px 4px 8px;
   }
 
   .closeButton {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 0;
-    line-height: 1;
-    height: 16px;
-    width: 16px;
-    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: inherit;
     cursor: pointer;
-    color: inherit;
+
+    &:active {
+      transform: scale(95%);
+    }
+
   }
 
 }
-//
-//
-//.toastList {
-//  position: fixed;
-//  width: 100%;
-//  padding: 16px;
-//  min-height: 100vh;
-//  max-width: 400px;
-//
-//  .topLeft {
-//    top: 0;
-//    left: 0;
-//
-//    .toast {
-//      animation: toast-in-right 2.5s;
-//    }
-//
-//  }
-//
-//  .topRight {
-//    top: 0;
-//    right: 0;
-//  }
-//
-//  .bottomLeft {
-//    bottom: 0;
-//    left: 0;
-//  }
-//
-//  .bottomRight {
-//    bottom: 0;
-//    right: 0;
-//
-//    .toast {
-//      animation: toast-in-right 2.5s;
-//    }
-//  }
-//
-//}
+
+.icon {
+  margin-right: 5px;
+}
+
+.toastHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+
+  &.success {
+    background-color: green;
+  }
+
+  &.error {
+    background: red;
+  }
+
+  &.warning {
+    background: #b4b409;
+  }
+
+  &.default {
+    background: fuchsia;
+  }
+
+}
 
 
 .toastList {
@@ -82,21 +81,63 @@
 .topLeft {
   top: 0;
   left: 0;
+
+  .toast {
+    animation: toast-in-left 0.5s;
+
+
+    &.removing {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+
+  }
 }
 
 .topRight {
   top: 0;
   right: 0;
+
+
+  .toast {
+    animation: toast-in-right 0.5s;
+
+
+    &.removing {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+  }
 }
 
 .bottomLeft {
   bottom: 0;
   left: 0;
+
+
+  .toast {
+    animation: toast-in-left 0.5s;
+
+    &.removing {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+
+  }
 }
 
 .bottomRight {
   bottom: 0;
   right: 0;
+
+  .toast {
+    animation: toast-in-right 0.5s;
+
+    &.removing {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+  }
 }
 
 @keyframes toast-in-right {
@@ -117,8 +158,24 @@
   }
 }
 
-
 .toastList .toast {
-  transition: transform 2.5s, opacity 2.5s,
-  box-shadow 2.5s ease-in-out;
+  transition: transform 0.5s, opacity 0.5s, box-shadow 0.5s ease-in-out;
+}
+
+.toastThumbnail {
+  width: 4px;
+  height: 100%;
+
+  &.success {
+    background: green;
+  }
+
+  &.warning {
+    background: #727204;
+  }
+
+  &.error {
+    background: red;
+  }
+
 }
