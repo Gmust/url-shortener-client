@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Typing from '../components/shared/Typing.astro';
 import Tooltip from '../components/shared/Tooltip.astro';
 import { UrlInput } from '../components/mainPage/UrlInput';
+import { UrlsTable } from '../components/mainPage/urlsList/UrlsTable';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import styles from '../styles/mainPage/main-page.module.scss';
 import { blur } from '../styles/header.module.scss';
@@ -16,7 +17,7 @@ import { blur } from '../styles/header.module.scss';
         <p>Linkly is an efficient and easy-to-use URL shortening service that streamlines your online experience.</p>
       </div>
       <UrlInput />
-      <span class={styles.linksInfo}>
+      <span class:list={[styles.linksInfo, blur]}>
         You can create
         <Typing tag="h4" size="md" variant="gradient">05</Typing>
         more links. Register now to enjoy unlimited usage
@@ -28,6 +29,7 @@ import { blur } from '../styles/header.module.scss';
       </span>
     </div>
     <div>
+      <UrlsTable/>
     </div>
   </section>
 </Layout>

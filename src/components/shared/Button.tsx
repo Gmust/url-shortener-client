@@ -12,6 +12,7 @@ export const buttonVariants = cva(
       variant: {
         primary: styles.primary,
         secondary: styles.secondary,
+        pink: styles.primaryPink
       },
       size: {
         md: styles.mdSize,

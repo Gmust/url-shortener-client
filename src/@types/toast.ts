@@ -4,9 +4,9 @@ export interface IToast {
   id: string,
   message: string,
   type: ToastTypes,
-  Icon?: IconType
-  removing?: boolean
-  headingText?: string;
+  Icon?: IconType,
+  removing?: boolean,
+  headingText?: string
 }
 
 

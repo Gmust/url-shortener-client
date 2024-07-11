@@ -26,6 +26,23 @@
   &:disabled {
     background: $black;
   }
+
+
+}
+
+.primaryPink {
+  box-shadow: 0 1px 15px $brand-primary-pink;
+  background: $brand-primary-pink;
+  color: white;
+  border: 2px solid $brand-primary-pink;
+
+  &:hover {
+    background: #af1b50;
+  }
+
+  &:disabled {
+    background: #af1b50;
+  }
 }
 
 .default {
