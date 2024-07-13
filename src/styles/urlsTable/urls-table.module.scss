@@ -1,0 +1,41 @@
+@import "../global.module.scss";
+
+
+.tableContainer {
+  color: #c9c9c9;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  table {
+    border-collapse: separate;
+    border-spacing:0 0.2rem;
+  }
+
+  thead {
+    background: $black;
+    font-size: 22px;
+
+    tr {
+      text-align: left;
+    }
+
+  }
+
+  th, td {
+    padding: 12px 12px 12px 12px;
+  }
+
+}
+
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

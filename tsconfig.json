@@ -12,6 +12,9 @@
       "@styles/*": [
         "src/styles/*"
       ],
+      "@utils/*": [
+        "src/styles/*"
+      ],
       "@types/*": [
         "src/types/*"
       ]

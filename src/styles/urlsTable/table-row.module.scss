@@ -1,0 +1,91 @@
+@import "../global.module.scss";
+
+
+.rowContainer {
+  font-size: 20px;
+
+  a {
+    text-decoration: none;
+    color: $lite-text;
+    transition: 0.3s;
+
+    &:hover {
+      color: #9a9d9d;
+    }
+
+  }
+
+  background: #181e29;
+}
+
+.shortLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+
+  .icon {
+    background: rgba(128, 128, 128, 0.19);
+    margin-left: 4px;
+    transition: 0.3s;
+
+    &:hover {
+      color: gray;
+      background: rgba(86, 85, 85, 0.19);
+    }
+
+  }
+}
+
+
+.icon {
+  cursor: pointer;
+  color: white;
+  padding: 8px;
+  border-radius: 100%;
+}
+
+.urlStatus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .icon {
+    margin-left: 10px;
+  }
+
+}
+
+
+.active {
+  color: rgba(0, 128, 0, 0.73);
+
+  .icon {
+    background: rgba(0, 128, 0, 0.33);
+    transition: 0.3s;
+
+    &:hover {
+      color: $lite-text;
+      background: rgba(1, 89, 1, 0.33);
+    }
+
+  }
+
+}
+
+.inactive {
+  color: rgba(180, 180, 9, 0.75);
+
+  .icon {
+    background: rgba(180, 180, 9, 0.37);
+    transition: 0.3s;
+
+    &:hover {
+      color: $lite-text;
+      background: rgba(136, 136, 5, 0.37);
+    }
+
+  }
+
+
+}

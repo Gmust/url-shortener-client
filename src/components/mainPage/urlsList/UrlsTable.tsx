@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { TableRow } from '@components/mainPage/urlsList/TableRow';
 import { IUrl } from '../../../@types/url';
 import styles from '@styles/urlsTable/urls-table.module.scss';
+import { Tooltip } from '@components/shared/Tooltip';
+
 
 const mockUrls: IUrl[] = [
   {
@@ -19,7 +21,7 @@ const mockUrls: IUrl[] = [
   {
     urlId: '456def',
     originalUrl: 'https://example.com/long-url-2',
-    shortUrl: 'https://short.ly/2',
+    shortUrl: 'https://short.ly/long-url-3',
     clicks: 5,
     expiresIn: '2024-11-30T23:59:59Z',
     maxClicks: 50,
@@ -31,7 +33,7 @@ const mockUrls: IUrl[] = [
   {
     urlId: '789ghi',
     originalUrl: 'https://example.com/long-url-3',
-    shortUrl: 'https://short.ly/3',
+    shortUrl: 'https://short.ly/long-url-3',
     clicks: 0,
     expiresIn: '2024-10-31T23:59:59Z',
     maxClicks: 0,
@@ -72,19 +74,42 @@ export const UrlsTable = () => {
   const [links, setLinks] = useState<IUrl[]>(mockUrls);
 
   return (
-    <div>
+    <div className={`${styles.tableContainer}`}>
       <table>
-        <caption>User saved links</caption>
         <thead>
         <tr>
-          <th scope="col">Short link</th>
-          <th scope="col">Original link</th>
-          <th scope="col">Clicks</th>
+          <th scope="col">
+            <Tooltip tooltipText="Short link for your use" position="top" textSize="md">
+              Short link
+            </Tooltip>
+          </th>
+          <th scope="col">
+            <Tooltip tooltipText="Original link for current shortened link" position="top" textSize="md">
+              Original link
+            </Tooltip>
+          </th>
+          <th scope="col">
+            <Tooltip tooltipText="Original link for current shortened link" position="top" textSize="md">
+              Clicks
+            </Tooltip>
+          </th>
           {links.some((link) => link.maxClicks) &&
-            <th scope="col">Max. Clicks</th>
+            <th scope="col">
+              <Tooltip tooltipText="Predefined number of maximum clicks" position="top" textSize="md">
+                Max. Clicks
+              </Tooltip>
+            </th>
           }
-          <th scope="col">Status</th>
-          <th scope="col">Date</th>
+          <th scope="col">
+            <Tooltip tooltipText="Link status active/inactive" position="top" textSize="md">
+              Status
+            </Tooltip>
+          </th>
+          <th scope="col">
+            <Tooltip tooltipText="Date of link creation" position="top" textSize="md">
+              Date
+            </Tooltip>
+          </th>
         </tr>
         </thead>
         <tbody>
@@ -93,11 +118,7 @@ export const UrlsTable = () => {
             : <p>It's kind of empty here</p>
         }
         </tbody>
-        <tfoot>
-        <tr>
-          <th scope="row" colSpan={2}></th>
-        </tr>
-        </tfoot>
+        <caption className={styles.srOnly}>User saved links</caption>
       </table>
     </div>
   );

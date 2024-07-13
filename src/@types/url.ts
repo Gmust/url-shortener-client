@@ -7,6 +7,6 @@ export interface IUrl {
   expiresIn?: string,
   maxClicks?: number,
   isActive: boolean,
-  updatedAt: string,
+  updatedAt: string  ,
   createdAt: string
 }
