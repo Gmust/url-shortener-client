@@ -1,0 +1,51 @@
+
+
+.default {
+  background: grey;
+  border: 1px solid #5b5959;
+  color: white;
+  font-size: 20px;
+  display: block;
+  width: 100%;
+  padding: 8px;
+}
+
+
+.mdSize {
+  height: 40px;
+  padding: 20px 20px;
+}
+
+.largeSize {
+  font-size: 20px;
+  height: 54px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.smallSize {
+  font-size: 16px;
+  height: 34px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+
+.rounded {
+  border-radius: 20px;
+}
+.iconInput {
+  display: flex;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 14px;
+    color: grey;
+
+  }
+
+}
+

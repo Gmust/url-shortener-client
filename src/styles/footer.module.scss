@@ -1,10 +1,25 @@
+@import "global.module";
 
 .footerContainer {
-  position: fixed;
-  left: 0;
+  display: flex;
   bottom: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
   width: 100%;
-  background-color: red;
-  color: white;
-  text-align: center;
+  box-sizing: border-box;
+  background: $grey;
+  color: $lite-text;
+}
+
+.creatorLink {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
 }

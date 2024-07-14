@@ -1,7 +1,7 @@
 ---
 import styles from '../styles/global.module.scss';
 import Header from '../components/header/Header.astro';
-import { Footer } from '../components/footer/Footer';
+import { Footer } from '../components/footer/Footer.astro';
 ---
 
 <!doctype html>
@@ -16,7 +16,6 @@ import { Footer } from '../components/footer/Footer';
 <body class={styles}>
 <Header />
 <slot />
-<Footer client:only="react"/>
 </body>
 </html>
 

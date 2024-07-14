@@ -1,0 +1,21 @@
+@import "../global.module";
+
+
+.registerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+
+
+.registerForm {
+  background: $grey;
+  color: $lite;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

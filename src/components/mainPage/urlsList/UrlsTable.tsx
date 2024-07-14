@@ -70,11 +70,11 @@ const mockUrls: IUrl[] = [
 
 
 export const UrlsTable = () => {
-
-  const [links, setLinks] = useState<IUrl[]>(mockUrls);
+  const isAuth = false;
+  const [links, setLinks] = useState<IUrl[]>(isAuth ? null : mockUrls);
 
   return (
-    <div className={`${styles.tableContainer}`}>
+    <div className={styles.tableContainer}>
       <table>
         <thead>
         <tr>
@@ -93,13 +93,13 @@ export const UrlsTable = () => {
               Clicks
             </Tooltip>
           </th>
-          {links.some((link) => link.maxClicks) &&
+          {links.some((link) => link.maxClicks) && (
             <th scope="col">
               <Tooltip tooltipText="Predefined number of maximum clicks" position="top" textSize="md">
                 Max. Clicks
               </Tooltip>
             </th>
-          }
+          )}
           <th scope="col">
             <Tooltip tooltipText="Link status active/inactive" position="top" textSize="md">
               Status
@@ -113,10 +113,11 @@ export const UrlsTable = () => {
         </tr>
         </thead>
         <tbody>
-        {
-          links.length > 0 ? links.map(link => <TableRow key={link._id} {...link} />)
-            : <p>It's kind of empty here</p>
-        }
+        {links.length > 0 ? (
+          links.map((link) => <TableRow key={link._id} {...link} />)
+        ) : (
+          <p>It's kind of empty here</p>
+        )}
         </tbody>
         <caption className={styles.srOnly}>User saved links</caption>
       </table>
