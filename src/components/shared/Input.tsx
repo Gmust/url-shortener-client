@@ -37,21 +37,21 @@ export const Input = forwardRef(({
                                    ...props
                                  }: IInputProps, ref: LegacyRef<HTMLInputElement>) => {
     return (
-      <>
+      <div style={{ margin: '10px' }}>
         {
           Icon ?
             <div className={styles.iconInput}>
-            <span>
+            <span className={clsx('', variant === 'rounded' && styles.roundedIcon, size)}>
               <Icon />
             </span>
-              <input className={clsx(inputVariants({ className, size, variant }), styles.rounded)} disabled={isLoading}
+              <input className={clsx(inputVariants({ className, size, variant }))} disabled={isLoading}
                      ref={ref} {...props} />
             </div>
             :
             <input className={clsx(inputVariants({ className, size, variant }))} disabled={isLoading}
                    ref={ref} {...props} />
         }
-      </>
+      </div>
     );
   },
 );

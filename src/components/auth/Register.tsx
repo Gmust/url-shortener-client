@@ -4,6 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { registerValidator } from '../../utils/validators/register';
 import styles from '@styles/auth/register.module.scss';
 import { Input } from '@components/shared/Input';
+import { Fa4 } from 'react-icons/fa6';
+import { ImChrome } from 'react-icons/im';
 
 type form = z.infer<typeof registerValidator>
 
@@ -24,13 +26,13 @@ export const Register = () => {
         <span>Create account to receive extended features</span>
         <form>
           <div>
-            <Input />
+            <Input size='md' Icon={ImChrome} variant='rounded' />
           </div>
           <div>
-
+            <Input size='sm'  Icon={ImChrome} />
           </div>
           <div>
-
+            <Input size='lg'  Icon={ImChrome} />
           </div>
           <div>
 
