@@ -1,0 +1,11 @@
+@import "./global.module";
+
+.divider {
+  background: $lite;
+  width: 100%;
+  height: 2px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  opacity: 75%;
+}
+

@@ -2,7 +2,6 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { ButtonHTMLAttributes } from 'react';
 import { TbLoader3 } from 'react-icons/tb';
 import styles from '@styles/button.module.scss';
-// @ts-ignore
 import clsx from 'clsx';
 
 export const buttonVariants = cva(
@@ -12,7 +11,7 @@ export const buttonVariants = cva(
       variant: {
         primary: styles.primary,
         secondary: styles.secondary,
-        pink: styles.primaryPink
+        pink: styles.primaryPink,
       },
       size: {
         md: styles.mdSize,
@@ -24,15 +23,15 @@ export const buttonVariants = cva(
       variant: 'primary',
       size: 'md',
     },
-  }
+  },
 );
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   isLoading?: boolean;
 }
 
-export const Button = ({ className, children, variant, isLoading, size, ...props }: ButtonProps) => (
-  <button className={clsx(buttonVariants({ variant, size }), className)} disabled={isLoading} {...props}>
+export const Button = ({ className, children, variant, isLoading, size, disabled, ...props }: ButtonProps) => (
+  <button className={clsx(buttonVariants({ variant, size }), className, disabled && styles.disabled)} disabled={isLoading} {...props}>
     {isLoading ? <TbLoader3 className={styles.loaderIcon} /> : null}
     {children}
   </button>

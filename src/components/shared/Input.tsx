@@ -1,9 +1,9 @@
 import { cva, VariantProps } from 'class-variance-authority';
-import styles from '@styles/input.module.scss';
 import { forwardRef, InputHTMLAttributes, LegacyRef } from 'react';
 import { IconType } from 'react-icons';
 //@ts-ignore
 import clsx from 'clsx';
+import styles from '@styles/input.module.scss';
 
 const inputVariants = cva(styles.default, {
   variants: {
@@ -37,7 +37,7 @@ export const Input = forwardRef(({
                                    ...props
                                  }: IInputProps, ref: LegacyRef<HTMLInputElement>) => {
     return (
-      <div style={{ margin: '10px' }}>
+      <div style={{ marginTop: '10px', marginBottom: '10px' }}>
         {
           Icon ?
             <div className={styles.iconInput}>
