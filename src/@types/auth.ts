@@ -12,6 +12,19 @@ interface ILoginRes {
   refresh_token: string
 }
 
+
+interface IRegisterReq {
+  name: string,
+  surname: string,
+  password: string,
+  email: string
+}
+
+interface IRegisterRes {
+  message: string;
+}
+
+
 interface IUser {
   email: string,
   name: string,
@@ -21,6 +34,45 @@ interface IUser {
   subscription: ISubscription,
   role: RolesEnum,
   supportChats: []
+}
+
+
+interface IConfirmAccountRes {
+  message: string;
+}
+
+interface IConfirmAccountReq {
+  email: string,
+  confirmationToken: string
+}
+
+interface IRefreshTokenRes {
+  access_token: string,
+  refresh_token: string
+}
+
+interface IRefreshTokenReq {
+  email: string,
+  refresh_token: string
+}
+
+
+interface IForgotPasswordReq {
+  email: string;
+}
+
+interface IForgotPasswordRes {
+  message: string;
+}
+
+interface IResetPasswordReq {
+  email: string,
+  newPassword: string,
+  resetToken: string
+}
+
+interface IResetPasswordRes {
+  message: string;
 }
 
 enum RolesEnum {
@@ -33,6 +85,16 @@ enum RolesEnum {
 export {
   ILoginRes,
   ILoginReq,
+  IRegisterRes,
+  IRegisterReq,
+  IConfirmAccountRes,
+  IConfirmAccountReq,
+  IRefreshTokenRes,
+  IRefreshTokenReq,
+  IForgotPasswordReq,
+  IForgotPasswordRes,
+  IResetPasswordRes,
+  IResetPasswordReq,
   RolesEnum,
   IUser,
 };
