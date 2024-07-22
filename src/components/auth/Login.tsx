@@ -22,6 +22,7 @@ type form = z.infer<typeof loginValidator>
 export const Login = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
   const { toasts, addToast, removeToast } = useToast();
 
   const {
@@ -112,9 +113,16 @@ export const Login = () => {
               className={clsx(styles.errorMessage, errors.email && styles.visible)}>{errors.email && errors.email.message}</p>
           </div>
           <div className={styles.inputContainer}>
-            <label htmlFor="password">Password:</label>
+            <div className={styles.passwordShow}>
+              <label htmlFor="password">Password:</label>
+              <div className={styles.checkboxContainer}>
+                <label htmlFor="show-password">Show password:</label>
+                <input id="show-password" type="checkbox" onClick={() => setIsShowPassword(!isShowPassword)} />
+              </div>
+            </div>
             <Input autoComplete="new-password" size="md" Icon={RiLockPasswordLine}
-                   variant="rounded" {...register('password')} id="password" type="password" />
+                   variant="rounded" {...register('password')} id="password"
+                   type={isShowPassword ? 'text' : 'password'} />
             <p className={clsx(styles.errorMessage, errors.password && styles.visible)}>
               {errors.password && errors.password.message}
             </p>

@@ -2,13 +2,13 @@ import axios from 'axios';
 
 const $unAuthHost = axios.create({
   // @ts-ignore
-  baseURL: import.meta.env.BACKEND_URL,
+  baseURL: import.meta.env.PUBLIC_BACKEND_URL,
   withCredentials: false,
 });
 
 const $authHost = axios.create({
   // @ts-ignore
-  baseURL: import.meta.env.BACKEND_URL,
+  baseURL: import.meta.env.PUBLIC_BACKEND_URL,
   withCredentials: true,
 });
 

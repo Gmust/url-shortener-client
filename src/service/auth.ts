@@ -4,7 +4,7 @@ import {
   ILoginReq,
   ILoginRes,
   IRefreshTokenReq, IRefreshTokenRes,
-  IRegisterReq, IResetPasswordReq, IResetPasswordRes,
+  IRegisterReq, IRegisterRes, IResetPasswordReq, IResetPasswordRes,
 } from '../@types/auth';
 import { $unAuthHost } from './index';
 
@@ -28,7 +28,7 @@ export class AuthService {
 
   public static async registerAccount({ email, password, surname, name }: IRegisterReq) {
     try {
-      const response = await $unAuthHost.post(
+      const response = await $unAuthHost.post<IRegisterRes>(
         '/auth/sign-up',
         {
           email,

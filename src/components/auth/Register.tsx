@@ -5,7 +5,7 @@ import { registerValidator } from '../../utils/validators/register';
 import styles from '@utils/auth/auth.module.scss';
 import { Input } from '@components/shared/Input';
 
-import { MdOutlineEmail } from 'react-icons/md';
+import { MdError, MdOutlineEmail } from 'react-icons/md';
 import { RiLockPasswordFill, RiLockPasswordLine } from 'react-icons/ri';
 import { PiPerson, PiPersonFill } from 'react-icons/pi';
 import { Button } from '@components/shared/Button';
@@ -15,6 +15,9 @@ import { useToast } from '../../hooks/useToast';
 import { ToastList } from '@components/shared/toast/ToastList';
 import { ToastPositions, ToastTypes } from '../../@types/toast';
 import clsx from 'clsx';
+import { AuthService } from '../../service/auth';
+import { VscVerified } from 'react-icons/vsc';
+import { AxiosError } from 'axios';
 
 type form = z.infer<typeof registerValidator>
 
@@ -50,9 +53,39 @@ export const Register = () => {
   const onSubmit = async (data: form) => {
     setIsLoading(true);
     try {
+      const response = await AuthService.registerAccount({
+        email: data.email,
+        name: data.name,
+        surname: data.surname,
+        password: data.password,
+      });
 
+      addToast({
+        removing: true,
+        message: response.message,
+        type: ToastTypes.Success,
+        Icon: VscVerified,
+      });
+      reset();
     } catch (e) {
-
+      console.error(e);
+      if (e instanceof AxiosError) {
+        addToast({
+          removing: true,
+          message: e.response.data.message,
+          headingText: `${e.response.data.error} ${e.response.data.statusCode}`,
+          type: ToastTypes.Error,
+          Icon: MdError,
+        });
+      } else {
+        addToast({
+          removing: true,
+          message: 'Something went wrong',
+          headingText: 'Server Error',
+          type: ToastTypes.Error,
+          Icon: MdError,
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -112,9 +145,9 @@ export const Register = () => {
             <Button
               type="submit"
               variant="pink"
-              disabled={isDisabled}
+              disabled={isDisabled || isLoading}
               aria-disabled={isDisabled}
-              onClick={isDisabled && handleDisabledEvent}
+              onClick={isDisabled ? handleDisabledEvent : null}
               isLoading={isLoading}
             >
               Register

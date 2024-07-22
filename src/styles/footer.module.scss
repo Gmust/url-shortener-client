@@ -1,25 +1,51 @@
 @import "global.module";
 
 .footerContainer {
-  display: flex;
-  bottom: 0;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
   width: 100%;
-  box-sizing: border-box;
   background: $grey;
   color: $lite-text;
-}
-
-.creatorLink {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .contacts {
+  flex: 1;
+  min-width: 200px;
+}
+
+.creatorLink {
+  flex: 1;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+
+  a {
+    margin-top: 10px;
+    color: $brand-primary-pink;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: 100ms;
+
+    &:hover {
+      scale: 1.02;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footerContainer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .creatorLink {
+    align-items: center;
+  }
 }
