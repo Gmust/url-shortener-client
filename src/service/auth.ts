@@ -6,10 +6,9 @@ import {
   IRefreshTokenReq, IRefreshTokenRes,
   IRegisterReq, IResetPasswordReq, IResetPasswordRes,
 } from '../@types/auth';
-import { AxiosError } from 'axios';
 import { $unAuthHost } from './index';
 
-export class AuthSerivce {
+export class AuthService {
 
   public static async login({ password, email }: ILoginReq) {
     try {

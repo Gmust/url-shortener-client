@@ -9,12 +9,13 @@ import styles from '@utils/auth/auth.module.scss';
 import { Divider } from '@components/shared/Divider';
 import { Input } from '@components/shared/Input';
 
-import { MdOutlineEmail } from 'react-icons/md';
+import { MdError, MdOutlineEmail, MdOutlinePersonOff } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { Button } from '@components/shared/Button';
 import { ToastList } from '@components/shared/toast/ToastList';
-import { ToastPositions } from '../../@types/toast';
+import { ToastPositions, ToastTypes } from '../../@types/toast';
 import clsx from 'clsx';
+import { VscVerified } from 'react-icons/vsc';
 
 type form = z.infer<typeof loginValidator>
 
@@ -49,9 +50,48 @@ export const Login = () => {
   const onSubmit = async (data: form) => {
     setIsLoading(true);
     try {
+      const response = await fetch(
+        '/api/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: data.email,
+            password: data.password,
+          }),
+        },
+      );
 
+      if (response.status === 401) {
+        addToast({
+          removing: true,
+          message: 'Invalid Credentials',
+          headingText: 'Unauthenticated',
+          type: ToastTypes.Warning,
+          Icon: MdOutlinePersonOff,
+        });
+      } else if (response.status === 201 || 201) {
+        addToast({
+          removing: true,
+          message: 'User successfully logged in, you will be redirected shortly...',
+          type: ToastTypes.Success,
+          Icon: VscVerified,
+        });
+        reset();
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
+      }
     } catch (e) {
-
+      addToast({
+        removing: true,
+        message: 'Something went wrong',
+        headingText: 'Server Error',
+        type: ToastTypes.Error,
+        Icon: MdError,
+      });
     } finally {
       setIsLoading(false);
     }
@@ -68,7 +108,8 @@ export const Login = () => {
             <label htmlFor="email">Email:</label>
             <Input autoComplete="email" size="md" Icon={MdOutlineEmail} variant="rounded" {...register('email')}
                    id="email" />
-            <p  className={clsx(styles.errorMessage, errors.email && styles.visible)}>{errors.email && errors.email.message}</p>
+            <p
+              className={clsx(styles.errorMessage, errors.email && styles.visible)}>{errors.email && errors.email.message}</p>
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="password">Password:</label>
@@ -83,9 +124,9 @@ export const Login = () => {
             <Button
               type="submit"
               variant="pink"
-              disabled={isDisabled}
+              disabled={isDisabled || isLoading}
               aria-disabled={isDisabled}
-              onClick={isDisabled && handleDisabledEvent}
+              onClick={isDisabled ? handleDisabledEvent : null}
               isLoading={isLoading}
             >
               Login

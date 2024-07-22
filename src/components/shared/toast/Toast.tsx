@@ -25,7 +25,6 @@ export const Toast = ({ Icon, type, id, message, onClose, removing, headingText 
     }
   }, [removing]);
 
-  console.log(Icon)
   const iconMap = {
     success: <TbCircleCheck size={20} />,
     error: <RiErrorWarningLine size={20} />,
