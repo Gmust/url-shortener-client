@@ -1,0 +1,58 @@
+---
+import { MdOutlineSupportAgent } from 'react-icons/md';
+import { IoLogIn } from 'react-icons/io5';
+import Layout from '../../layouts/Layout.astro';
+import { Button } from '../../components/shared/Button';
+import styles from '../../styles/auth/confirm-account.module.scss';
+import clsx from 'clsx';
+
+const token = Astro.url.searchParams.get('token') || '';
+const email = Astro.url.searchParams.get('email') || '';
+
+const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/confirm-registration`, {
+  method: 'POST',
+  body: JSON.stringify({
+    confirmationToken: encodeURIComponent(token),
+    email: email,
+  }),
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+const data = await response.json();
+---
+
+<Layout>
+  {
+    <div class={styles.confirmAccountContainer}>
+      {
+        data.statusCode
+          ?
+          <div class={styles.confirmAccountText}>
+              <span>
+                <h3>{data.message}</h3>
+                <MdOutlineSupportAgent size="40" />
+              </span>
+            <a href="/support-contact">
+              <Button variant="pink">
+                Contact
+              </Button>
+            </a>
+          </div>
+          :
+          <div class={styles.confirmAccountText}>
+              <span>
+                <h3>{data.message}</h3>
+                <IoLogIn size="40"/>
+              </span>
+            <a href="/auth/login">
+              <Button>
+                Login
+              </Button>
+            </a>
+          </div>
+      }
+    </div>
+  }
+
+</Layout>

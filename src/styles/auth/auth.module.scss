@@ -71,9 +71,6 @@
     max-width: 400px;
   }
 
-  &.visible {
-    opacity: 1;
-  }
 }
 
 
@@ -91,6 +88,17 @@
     margin-top: 12px;
     width: 100%;
   }
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-bottom: 5px;
+    }
+
+  }
+
 }
 
 

@@ -1,0 +1,29 @@
+@import "../global.module";
+
+.confirmAccountContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmAccountText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  color: $lite;
+  background: $grey;
+  padding: 20px;
+
+  button {
+    margin-top: 14px;
+  }
+
+  span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+}

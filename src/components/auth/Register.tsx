@@ -59,7 +59,7 @@ export const Register = () => {
         surname: data.surname,
         password: data.password,
       });
-
+      console.log('response', response);
       addToast({
         removing: true,
         message: response.message,

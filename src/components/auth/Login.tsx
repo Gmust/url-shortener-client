@@ -128,7 +128,10 @@ export const Login = () => {
             </p>
           </div>
           <div className={styles.submitContainer}>
-            <p>Don`t have an account? <a href="/auth/register">Create it!</a></p>
+            <div>
+              <p>Don`t have an account? <a href="/auth/register">Create it!</a></p>
+              <p>Forgot password? <a href="/auth/forgot-password">Reset it it!</a></p>
+            </div>
             <Button
               type="submit"
               variant="pink"
