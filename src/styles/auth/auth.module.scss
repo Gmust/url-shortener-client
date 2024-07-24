@@ -71,8 +71,12 @@
     max-width: 400px;
   }
 
+
 }
 
+.visible {
+  opacity: 1;
+}
 
 .submitContainer {
   display: flex;
@@ -119,6 +123,7 @@
   label {
     margin-right: 0.5rem;
   }
+  }
 
   input[type='checkbox'] {
     width: 20px;
@@ -130,4 +135,3 @@
   input[type='checkbox']:checked {
     background-color: $brand-primary-pink;
   }
-}

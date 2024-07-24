@@ -108,4 +108,24 @@ export class AuthService {
     }
   }
 
+  public static async localLogin({ password, email }: ILoginReq) {
+    try {
+      return await fetch(
+        '/api/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        },
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
+
 }

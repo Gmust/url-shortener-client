@@ -1,8 +1,6 @@
 import { z } from 'zod';
-import { loginValidator } from '../../utils/validators/login';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
+import { loginValidator } from '@utils/validators/login';
+import {  useState } from 'react';
 import { useToast } from '../../hooks/useToast';
 
 import styles from '@utils/auth/auth.module.scss';
@@ -14,56 +12,35 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 import { Button } from '@components/shared/Button';
 import { ToastList } from '@components/shared/toast/ToastList';
 import { ToastPositions, ToastTypes } from '../../@types/toast';
-import clsx from 'clsx';
 import { VscVerified } from 'react-icons/vsc';
+import { handleDisabledEvent } from '@utils/handleDisableEvent';
+import { useCustomForm } from '../../hooks/useCustomForm';
+import { FormHookErrorMessage } from '@components/shared/FormHookErrorMessage';
+import { AuthService } from '../../service/auth';
 
 type form = z.infer<typeof loginValidator>
 
 export const Login = () => {
-  const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isShowPassword, setIsShowPassword] = useState<boolean>(false);
   const { toasts, addToast, removeToast } = useToast();
 
   const {
-    register,
-    formState: { errors, isValid, isDirty },
-    handleSubmit,
+    errors,
+    isLoading,
+    setIsLoading,
     reset,
-  } = useForm<form>({
-    resolver: zodResolver(loginValidator),
-    mode: 'all',
-  });
-
-  useEffect(() => {
-    if (isValid && isDirty) {
-      setIsDisabled(false);
-    }
-    if (!isValid) {
-      setIsDisabled(true);
-    }
-  }, [isValid, isDirty]);
-
-  const handleDisabledEvent = (e) => {
-    e.preventDefault();
-  };
+    register,
+    handleSubmit,
+    isDisabled,
+  } = useCustomForm(loginValidator);
 
   const onSubmit = async (data: form) => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        '/api/login',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: data.email,
-            password: data.password,
-          }),
-        },
-      );
+      const response = await AuthService.localLogin({
+        email: data.email,
+        password: data.password,
+      });
 
       if (response.status === 401) {
         addToast({
@@ -109,8 +86,7 @@ export const Login = () => {
             <label htmlFor="email">Email:</label>
             <Input autoComplete="email" size="md" Icon={MdOutlineEmail} variant="rounded" {...register('email')}
                    id="email" />
-            <p
-              className={clsx(styles.errorMessage, errors.email && styles.visible)}>{errors.email && errors.email.message}</p>
+            <FormHookErrorMessage error={errors.email} />
           </div>
           <div className={styles.inputContainer}>
             <div className={styles.passwordShow}>
@@ -123,9 +99,7 @@ export const Login = () => {
             <Input autoComplete="new-password" size="md" Icon={RiLockPasswordLine}
                    variant="rounded" {...register('password')} id="password"
                    type={isShowPassword ? 'text' : 'password'} />
-            <p className={clsx(styles.errorMessage, errors.password && styles.visible)}>
-              {errors.password && errors.password.message}
-            </p>
+            <FormHookErrorMessage error={errors.password} />
           </div>
           <div className={styles.submitContainer}>
             <div>

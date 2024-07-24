@@ -13,7 +13,7 @@
         "src/styles/*"
       ],
       "@utils/*": [
-        "src/styles/*"
+        "src/utils/*"
       ],
       "@types/*": [
         "src/types/*"

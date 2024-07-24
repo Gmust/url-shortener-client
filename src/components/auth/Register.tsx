@@ -1,8 +1,6 @@
-import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { registerValidator } from '../../utils/validators/register';
-import styles from '@utils/auth/auth.module.scss';
+import styles from '@styles/auth/auth.module.scss';
 import { Input } from '@components/shared/Input';
 
 import { MdError, MdOutlineEmail } from 'react-icons/md';
@@ -10,7 +8,7 @@ import { RiLockPasswordFill, RiLockPasswordLine } from 'react-icons/ri';
 import { PiPerson, PiPersonFill } from 'react-icons/pi';
 import { Button } from '@components/shared/Button';
 import { Divider } from '@components/shared/Divider';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useToast } from '../../hooks/useToast';
 import { ToastList } from '@components/shared/toast/ToastList';
 import { ToastPositions, ToastTypes } from '../../@types/toast';
@@ -18,37 +16,24 @@ import clsx from 'clsx';
 import { AuthService } from '../../service/auth';
 import { VscVerified } from 'react-icons/vsc';
 import { AxiosError } from 'axios';
+import { handleDisabledEvent } from '../../utils/handleDisableEvent';
+import { useCustomForm } from '../../hooks/useCustomForm';
+import { FormHookErrorMessage } from '@components/shared/FormHookErrorMessage';
 
 type form = z.infer<typeof registerValidator>
 
 export const Register = () => {
-  const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toasts, addToast, removeToast } = useToast();
 
   const {
     register,
-    formState: { errors, isValid, isDirty },
-    handleSubmit,
     reset,
-  } = useForm<form>({
-    resolver: zodResolver(registerValidator),
-    mode: 'all',
-  });
-
-
-  useEffect(() => {
-    if (isValid && isDirty) {
-      setIsDisabled(false);
-    }
-    if (!isValid) {
-      setIsDisabled(true);
-    }
-  }, [isValid, isDirty]);
-
-  const handleDisabledEvent = (e) => {
-    e.preventDefault();
-  };
+    handleSubmit,
+    errors,
+    setIsLoading,
+    isLoading,
+    isDisabled,
+  } = useCustomForm(registerValidator);
 
   const onSubmit = async (data: form) => {
     setIsLoading(true);
@@ -59,7 +44,6 @@ export const Register = () => {
         surname: data.surname,
         password: data.password,
       });
-      console.log('response', response);
       addToast({
         removing: true,
         message: response.message,
@@ -91,6 +75,10 @@ export const Register = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
+
   return (
     <div className={styles.formContainer}>
       <div className={styles.form}>
@@ -103,42 +91,32 @@ export const Register = () => {
               <label htmlFor="name">Name:</label>
               <Input autoComplete="given-name" size="md" Icon={PiPerson} variant="rounded"  {...register('name')}
                      id="name" />
-              <p className={clsx(styles.errorMessage, errors.name && styles.visible)}>
-                {errors.name && errors.name.message}
-              </p>
+              <FormHookErrorMessage error={errors.name}/>
             </div>
             <div className={styles.inputContainer} style={{ 'marginLeft': '10px' }}>
               <label htmlFor="surname">Surname:</label>
               <Input autoComplete="family-name" size="md" Icon={PiPersonFill} variant="rounded" {...register('surname')}
                      id="surname" />
-              <p className={clsx(styles.errorMessage, errors.surname && styles.visible)}>
-                {errors.surname && errors.surname.message}
-              </p>
+              <FormHookErrorMessage error={errors.surname}/>
             </div>
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="email">Email:</label>
             <Input autoComplete="email" size="md" Icon={MdOutlineEmail} variant="rounded" {...register('email')}
                    id="email" />
-            <p className={clsx(styles.errorMessage, errors.email && styles.visible)}>
-              {errors.email && errors.email.message}
-            </p>
+            <FormHookErrorMessage error={errors.email}/>
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="password">Password:</label>
             <Input autoComplete="new-password" size="md" Icon={RiLockPasswordLine}
                    variant="rounded" {...register('password')} id="password" type="password" />
-            <p className={clsx(styles.errorMessage, errors.password && styles.visible)}>
-              {errors.password && errors.password.message}
-            </p>
+            <FormHookErrorMessage error={errors.password}/>
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="confirmPassword">Confirm Password:</label>
             <Input size="md" Icon={RiLockPasswordFill} variant="rounded" {...register('confirmPassword')}
                    id="confirmPassword" type="password" />
-            <p className={clsx(styles.errorMessage, errors.confirmPassword && styles.visible)}>
-              {errors.confirmPassword && errors.confirmPassword.message}
-            </p>
+            <FormHookErrorMessage error={errors.confirmPassword}/>
           </div>
           <div className={styles.submitContainer}>
             <p>Already have an account? <a href="login">Login!</a></p>
