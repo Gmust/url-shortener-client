@@ -6,7 +6,7 @@ import { TbCircleCheck } from 'react-icons/tb';
 import { MdOutlineWarningAmber } from 'react-icons/md';
 import { RiErrorWarningLine } from 'react-icons/ri';
 import styles from '@styles/toast.module.scss';
-import { IToast, ToastTypes } from '../../../@types/toast';
+import { IToast, ToastTypes } from '../../../types/toast';
 // @ts-ignore
 import clsx from 'clsx';
 

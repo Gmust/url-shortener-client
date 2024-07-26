@@ -7,12 +7,11 @@ import styles from '@styles/auth/auth.module.scss';
 import { Divider } from '@components/shared/Divider';
 import { useToast } from '../../hooks/useToast';
 import { ToastList } from '@components/shared/toast/ToastList';
-import { ToastPositions, ToastTypes } from '../../@types/toast';
+import { ToastPositions, ToastTypes } from '../../types/toast';
 import { Input } from '@components/shared/Input';
 import { RiLockPasswordFill, RiLockPasswordLine } from 'react-icons/ri';
-import clsx from 'clsx';
 import { Button } from '@components/shared/Button';
-import { handleDisabledEvent } from '../../utils/handleDisableEvent';
+import { handleDisabledEvent } from '@utils/handleDisableEvent';
 import { AuthService } from '../../service/auth';
 import { MdError } from 'react-icons/md';
 import { VscVerified } from 'react-icons/vsc';
@@ -41,6 +40,9 @@ export const ResetPassword = ({ email, token }: IResetPasswordProps) => {
   } = useCustomForm(resetPasswordValidator);
 
   const onSubmit = async (data: form) => {
+    console.log('email', email);
+    console.log('token', token);
+    console.log('data', data);
     if (!email || !token) {
       addToast({
         removing: true,
@@ -49,6 +51,8 @@ export const ResetPassword = ({ email, token }: IResetPasswordProps) => {
         headingText: 'Error',
         message: 'Error in resetting password, repeat  all actions again',
       });
+
+      return;
     }
     setIsLoading(true);
     try {
@@ -64,6 +68,9 @@ export const ResetPassword = ({ email, token }: IResetPasswordProps) => {
         Icon: VscVerified,
       });
       reset();
+      setTimeout(() => {
+        window.location.replace('/auth/login');
+      }, 3000);
     } catch (e) {
       if (e instanceof AxiosError) {
         addToast({
@@ -89,20 +96,20 @@ export const ResetPassword = ({ email, token }: IResetPasswordProps) => {
 
   return (
     <div className={styles.formContainer}>
-      <div className={styles.form}>
+      <div className={styles.form} style={{ marginTop: '3%' }}>
         <h1>Reset you password</h1>
         <Divider />
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} style={{ minWidth: '440px' }}>
           <div className={styles.inputContainer}>
             <label htmlFor="password">New password:</label>
             <Input id="password" {...register('password')} size="md" variant="rounded" Icon={RiLockPasswordLine}
-                   isLoading={isLoading} />
+                   isLoading={isLoading} type="password" />
             <FormHookErrorMessage error={errors.password} />
           </div>
           <div className={styles.inputContainer}>
             <label htmlFor="confirm-password">Repeat new password:</label>
             <Input id="confirm-password" {...register('confirmPassword')} isLoading={isLoading} size="md"
-                   variant="rounded" Icon={RiLockPasswordFill} />
+                   variant="rounded" Icon={RiLockPasswordFill} type="password" />
             <FormHookErrorMessage error={errors.confirmPassword} />
           </div>
           <div className={styles.submitContainer}>

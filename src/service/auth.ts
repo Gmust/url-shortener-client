@@ -5,7 +5,7 @@ import {
   ILoginRes,
   IRefreshTokenReq, IRefreshTokenRes,
   IRegisterReq, IRegisterRes, IResetPasswordReq, IResetPasswordRes,
-} from '../@types/auth';
+} from '../types/auth';
 import { $unAuthHost } from './index';
 
 export class AuthService {

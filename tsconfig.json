@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["es6", "dom", "es2016"],
+    "lib": [
+      "es6",
+      "dom",
+      "es2016"
+    ],
     "baseUrl": ".",
     "paths": {
       "@components/*": [
@@ -15,8 +19,8 @@
       "@utils/*": [
         "src/utils/*"
       ],
-      "@types/*": [
-        "src/types/*"
+      "@store/*": [
+        "src/store/*"
       ]
     },
     "jsx": "react-jsx",

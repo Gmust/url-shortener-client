@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TableRow } from '@components/mainPage/urlsList/TableRow';
-import { IUrl } from '../../../@types/url';
+import { IUrl } from '../../../types/url';
 import styles from '@styles/urlsTable/urls-table.module.scss';
 import { Tooltip } from '@components/shared/Tooltip';
 

@@ -3,7 +3,7 @@ import { Toast } from '@components/shared/toast/Toast';
 import styles from '@styles/toast.module.scss';
 // @ts-ignore
 import clsx from 'clsx';
-import { IToast, ToastPositions } from '../../../@types/toast';
+import { IToast, ToastPositions } from '../../../types/toast';
 
 interface IToastListProps {
   position: ToastPositions,

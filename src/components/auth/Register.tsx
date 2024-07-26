@@ -11,7 +11,7 @@ import { Divider } from '@components/shared/Divider';
 import { useEffect } from 'react';
 import { useToast } from '../../hooks/useToast';
 import { ToastList } from '@components/shared/toast/ToastList';
-import { ToastPositions, ToastTypes } from '../../@types/toast';
+import { ToastPositions, ToastTypes } from '../../types/toast';
 import clsx from 'clsx';
 import { AuthService } from '../../service/auth';
 import { VscVerified } from 'react-icons/vsc';

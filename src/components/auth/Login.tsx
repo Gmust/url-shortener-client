@@ -3,7 +3,7 @@ import { loginValidator } from '@utils/validators/login';
 import {  useState } from 'react';
 import { useToast } from '../../hooks/useToast';
 
-import styles from '@utils/auth/auth.module.scss';
+import styles from '@styles/auth/auth.module.scss';
 import { Divider } from '@components/shared/Divider';
 import { Input } from '@components/shared/Input';
 
@@ -11,7 +11,7 @@ import { MdError, MdOutlineEmail, MdOutlinePersonOff } from 'react-icons/md';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { Button } from '@components/shared/Button';
 import { ToastList } from '@components/shared/toast/ToastList';
-import { ToastPositions, ToastTypes } from '../../@types/toast';
+import { ToastPositions, ToastTypes } from '../../types/toast';
 import { VscVerified } from 'react-icons/vsc';
 import { handleDisabledEvent } from '@utils/handleDisableEvent';
 import { useCustomForm } from '../../hooks/useCustomForm';

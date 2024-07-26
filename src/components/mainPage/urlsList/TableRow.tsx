@@ -1,5 +1,5 @@
 import { RiFileCopy2Fill } from 'react-icons/ri';
-import { IUrl } from '../../../@types/url';
+import { IUrl } from '../../../types/url';
 import { formatDate } from '../../../utils/formatDate';
 import styles from '@styles/urlsTable/table-row.module.scss';
 import { FaLink } from 'react-icons/fa6';

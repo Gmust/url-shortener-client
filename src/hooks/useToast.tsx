@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IToast } from '../@types/toast';
+import { IToast } from '../types/toast';
 
 export const useToast = () => {
 
@@ -22,7 +22,6 @@ export const useToast = () => {
   };
 
   const removeToast = (id: string) => {
-
     setToasts((prevState)=>
       prevState.map(toast =>
           toast.id === id ? {...toast, removing: true} : toast
