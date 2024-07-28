@@ -40,9 +40,6 @@ export const ResetPassword = ({ email, token }: IResetPasswordProps) => {
   } = useCustomForm(resetPasswordValidator);
 
   const onSubmit = async (data: form) => {
-    console.log('email', email);
-    console.log('token', token);
-    console.log('data', data);
     if (!email || !token) {
       addToast({
         removing: true,

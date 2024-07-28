@@ -1,5 +1,35 @@
 @import "../global.module.scss";
 
+
+.emptyHistoryContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+
+  h2 {
+    font-weight: 600;
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 20px;
+    margin-top: 10px;
+
+    a {
+      color: $lite-text;
+      text-decoration: underline;
+      margin-left: 1px;
+      margin-right: 1px;
+    }
+
+  }
+}
+
 .tableContainer {
   position: relative;
   color: #c9c9c9;

@@ -1,18 +1,31 @@
-import { atom } from 'nanostores';
 import { IUrl } from '../types/url';
+import { persistentAtom } from '@nanostores/persistent';
 
 
-export const $urls = atom<IUrl[]>([]);
-//TODO add persistence  for stores and for logged in users urls, and for logged out
+export const $urls = persistentAtom<IUrl[]>(
+  'urls',
+  [],
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  },
+);
+
 
 export function setUrls(data: IUrl[]) {
-  $urls.set([...$urls.get(), ...data]);
+  const currentUrls = $urls.get();
+  const newUrls = [...currentUrls, ...data];
+  $urls.set(newUrls);
 }
 
 export function addUrl(url: IUrl) {
-  $urls.set([...$urls.get(), url]);
+  const currentUrls = $urls.get();
+  const newUrls = [...currentUrls, url];
+  $urls.set(newUrls);
 }
 
 export function removeUrl(urlId: string) {
-  $urls.set([...$urls.get().filter(url => url._id !== urlId)]);
+  const currentUrls = $urls.get();
+  const newUrls = currentUrls.filter(url => url._id !== urlId);
+  $urls.set(newUrls);
 }

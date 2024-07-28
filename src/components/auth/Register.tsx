@@ -75,10 +75,6 @@ export const Register = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
-
   return (
     <div className={styles.formContainer}>
       <div className={styles.form}>
