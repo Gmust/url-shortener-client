@@ -23,6 +23,11 @@
     align-items: center;
     color: white;
     padding: 12px 6px 12px 6px;
+
+    p {
+      word-break: break-all;
+    }
+
   }
 
   .closeButton {

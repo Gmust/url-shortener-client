@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import styles from '../../styles/error.module.scss';
+import { blur } from '../../styles/header.module.scss';
+---
+
+<Layout>
+  <div class:list={[styles.errorContainer, blur]}>
+    <div class={styles.textContainer}>
+      <h3>
+        Link redirection error
+      </h3>
+      <p>
+        Probably link was deactivated, expired or the number of clicks set for the link was exceeded
+      </p>
+      <a href="/">Return to the main page</a>
+    </div>
+  </div>
+</Layout>

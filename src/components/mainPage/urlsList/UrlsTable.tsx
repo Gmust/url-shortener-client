@@ -27,13 +27,11 @@ export const UrlsTable = () => {
                 Original link
               </Tooltip>
             </th>
-            {urls.some((link) => link.clicks) && (
               <th scope="col">
                 <Tooltip tooltipText="Original link for current shortened link" position="top" textSize="md">
                   Clicks
                 </Tooltip>
               </th>
-            )}
             {urls.some((link) => link.maxClicks) && (
               <th scope="col">
                 <Tooltip tooltipText="Predefined number of maximum clicks" position="top" textSize="md">

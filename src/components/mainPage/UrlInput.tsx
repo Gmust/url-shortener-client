@@ -2,7 +2,7 @@ import styles from '@styles/mainPage/url-input.module.scss';
 import { FaLink } from 'react-icons/fa';
 import { Button } from '@components/shared/Button';
 import { useStore } from '@nanostores/react';
-import { $urls, addUrl, setUrls } from '@store/urlsStore';
+import { $urls, addUrl } from '@store/urlsStore';
 import { $isAuth } from '@store/authStore';
 import { useCustomForm } from '../../hooks/useCustomForm';
 import { shortenLinkValidator } from '@utils/validators/shorten-link';
@@ -40,15 +40,24 @@ export const UrlInput = () => {
       if (isAuth) {
 
       } else {
-        const response = await UrlsService.shortenUrl({ originalUrl: data.link });
-        addUrl(response.url);
-        addToast({
-          removing: true,
-          message: response.message,
-          type: ToastTypes.Success,
-          Icon: VscVerified,
-        });
-        reset();
+        if (urls.length >= 5) {
+          addToast({
+            removing: true,
+            headingText: 'Urls limit exceeded',
+            message: 'Your urls limit exceeded, create an account to get around that limit',
+            type: ToastTypes.Warning,
+          });
+        } else {
+          const response = await UrlsService.shortenUrl({ originalUrl: data.link });
+          addUrl(response.url);
+          addToast({
+            removing: true,
+            message: response.message,
+            type: ToastTypes.Success,
+            Icon: VscVerified,
+          });
+          reset();
+        }
       }
     } catch (e) {
       if (e instanceof AxiosError) {
@@ -83,7 +92,7 @@ export const UrlInput = () => {
         </Button>
       </form>
       <FormHookErrorMessage error={errors.link} />
-      <ToastList position={ToastPositions.BottomLeft} removeToast={removeToast} data={toasts} />
+      <ToastList position={ToastPositions.TopLeft} removeToast={removeToast} data={toasts} />
     </>
   );
 };

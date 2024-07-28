@@ -24,6 +24,14 @@ export function addUrl(url: IUrl) {
   $urls.set(newUrls);
 }
 
+export function updateUrl(updatedUrl: IUrl) {
+  const currentUrls = $urls.get();
+  const updatedUrls = currentUrls.map(url =>
+    url._id === updatedUrl._id ? { ...url, isActive: updatedUrl.isActive } : url
+  );
+  $urls.set(updatedUrls);
+}
+
 export function removeUrl(urlId: string) {
   const currentUrls = $urls.get();
   const newUrls = currentUrls.filter(url => url._id !== urlId);
