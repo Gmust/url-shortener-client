@@ -1,0 +1,36 @@
+@import "../global.module";
+
+
+.deleteLinksContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  h3 {
+    font-size: 24px;
+  }
+
+  span {
+    margin-top: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+
+    a {
+      margin-left: 5px;
+      color: $lite-text;
+      text-decoration: underline;
+    }
+
+  }
+
+
+}
+
+.buttonsContainer {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

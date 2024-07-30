@@ -60,11 +60,12 @@ export const UrlInput = () => {
         }
       }
     } catch (e) {
+      console.log(e instanceof AxiosError);
       if (e instanceof AxiosError) {
         addToast({
           removing: true,
           message: e.response.data.message,
-          headingText: e.status.toString(),
+          headingText: e.response.data.error,
           type: ToastTypes.Error,
           Icon: MdError,
         });

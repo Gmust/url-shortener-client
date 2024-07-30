@@ -15,7 +15,6 @@ interface IToastProps extends IToast {
 export const Toast = ({ Icon, type, id, message, onClose, removing, headingText }: IToastProps) => {
 
   const [isRemoving, setIsRemoving] = useState<boolean>(false);
-  console.log('headingText', headingText);
   useEffect(() => {
     if (removing) {
       setIsRemoving(true);
